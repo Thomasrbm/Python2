@@ -12,11 +12,8 @@ def main():
     df_income = df_income.set_index(df_income.columns[0])
     df_life = df_life.set_index(df_life.columns[0])
 
-    year = '1900'
-
-    # concat + dropna en une ligne, pas besoin de try/except
-    # si '1900' manque pandas retourne colonne vide, dropna vide tout
-    data = p.concat([df_income[year], df_life[year]],
+    # prend des 2 csv les val pour 1900 dans un df, idx + dico
+    data = p.concat([df_income['1900'], df_life['1900']],
                     axis=1, keys=['GDP', 'Life']).dropna()
     # concat un peut comme zip mais pour tableau, aligne par index
     # dropna supprime les lignes où il manque une valeur. faut val x et y
@@ -24,14 +21,13 @@ def main():
     # fait les points
     plt.scatter(data['GDP'], data['Life'])
 
+    # pas espacement constant mais puissance de 10
     plt.xscale('log')
     plt.xticks([300, 1000, 10000], ['300', '1k', '10k'])
-    plt.xlim(300, 10000)
 
-    plt.title("For the year 1900")
+    plt.title("1900")
     plt.xlabel("Gross domestic product")
     plt.ylabel("Life expectancy")
-    plt.tight_layout()
     plt.show()
 
 

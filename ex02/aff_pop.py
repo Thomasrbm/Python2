@@ -19,7 +19,6 @@ def main():
 
     # filtre et prend que si l'année est dans le csv
     years = [str(y) for y in range(1800, 2051) if str(y) in df.columns]
-
     x_years = [int(y) for y in years]
 
     # plot fait la courbe
@@ -39,9 +38,7 @@ def main():
     # .set_major_formatter() = applique le formateur aux graduations
     plt.gca().yaxis.set_major_formatter(formatter)
     plt.yticks([20_000_000, 40_000_000, 60_000_000])
-    # choisit les valeure gardées
     plt.xticks(range(1800, 2051, 40))
-    # choisit de ou à ou sur axe x et le step
     plt.title("Population Projections")
     plt.xlabel("Year")
     plt.ylabel("Population")
