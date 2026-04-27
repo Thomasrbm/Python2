@@ -1,0 +1,45 @@
+┌─────────────────────────────────────────┐
+│  columns (Index)  →  ["name", "age"]    │  ← axe 1
+├─────────┬───────────────────────────────┤
+│ index   │                               │
+│ (Index) │       BlockManager            │  ← le vrai stockage
+│         │   (ndarrays NumPy par dtype)  │
+│   ↓     │                               │
+│ axe 0   │                               │
+└─────────┴───────────────────────────────┘
+
+                    country   1800 ... 2100 => axe1
+
+0       valeur BlockManager qui sait ou aller chercher les  list ndarrays[Afghanistan  28.2  28.2  28.2] (nd array = les colonnes pour country puis 1800 etc)
+1   
+...
+194 => axe0
+
+
+ici 2 ndarray
+
+
+2 objs index + 1 BlockManager avec  des objs ndarrays
+
+
+
+
+Objet DataFrame
+│
+├── self.index    → Index object  [0, 1, 2, ..., 194]              (1 objet)
+├── self.columns  → Index object  ["country", "1800", ..., "2100"] (1 objet)
+│
+└── self._mgr     → BlockManager
+                    │
+                    ├── Block #0 : ndarray shape (1, 195)  dtype=object         =
+                    │              ["Afghanistan", "Angola", ..., "Zimbabwe"]
+                    │              ↑ correspond à la colonne "country"
+                    │
+                    └── Block #1 : ndarray shape (301, 195)  dtype=float64
+                                   ┌────────────────────────────────┐
+                                   │ 28.2  27.0  35.4  ...  33.7    │ ← année 1800
+                                   │ 28.2  27.0  35.4  ...  33.7    │ ← année 1801
+                                   │  ...   ...   ...  ...   ...    │
+                                   │ 76.8  80.0  88.4  ...  74.4    │ ← année 2100
+                                   └────────────────────────────────┘
+                                

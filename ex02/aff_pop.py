@@ -38,7 +38,7 @@ def main():
     # .yaxis = l'axe Y
     # .set_major_formatter() = applique le formateur aux graduations
     plt.gca().yaxis.set_major_formatter(formatter)
-    plt.yticks([20_000_000, 40_000_000, 60_000_000])  
+    plt.yticks([20_000_000, 40_000_000, 60_000_000])
     # choisit les valeure gardées
     plt.xticks(range(1800, 2051, 40))
     # choisit de ou à ou sur axe x et le step
